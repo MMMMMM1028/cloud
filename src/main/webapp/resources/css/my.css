@@ -60,7 +60,28 @@ html,body{
 .row{
     margin-top: 20px;
 }
+.config {
+    margin-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    background-color: rgb(246,246,246);
+}
+.config-type {
+    background-color: rgb(220,220,215);
+}
 
+#ex1Slider .slider-track-high{
+    background-color: white;
+}
+#ex1Slider .slider-selection{
+    background: dodgerblue;
+}
+#ex2Slider .slider-track-high{
+    background: white;
+}
+.slider-tick{
+    background: white;
+}
 /*.btn-group .btn{*/
     /*margin-right: 5px;*/
 /*}*/
