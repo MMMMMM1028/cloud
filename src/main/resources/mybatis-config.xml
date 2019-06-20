@@ -9,7 +9,7 @@
         <setting name="logImpl" value="STDOUT_LOGGING"></setting>
     </settings>
     <!--<typeAliases>-->
-    <!--<package name=""/>-->
+        <!--<package name="cn.wzc.cloud.dao"/>-->
     <!--</typeAliases>-->
     <!--<mappers>-->
     <!--<mapper resource="classpath: mapper/CategoryMapper.xml"></mapper>-->

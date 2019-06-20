@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -26,11 +26,11 @@
 <nav class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="./index.html" style="color: orange"><span class="glyphicon glyphicon-globe"></span> <strong>云数据库</strong></a>
+            <a class="navbar-brand" href="/" style="color: orange"><span class="glyphicon glyphicon-globe"></span> <strong>云数据库</strong></a>
         </div>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="./register.html"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-            <li><a href="./login.html"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+            <li><a href="./register"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+            <li><a href="./login"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
         </ul>
     </div>
 </nav>

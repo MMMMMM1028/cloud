@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -19,11 +19,10 @@
         <!--todo 显示个人头像-->
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="./index.html" style="color: orange"><span class="glyphicon glyphicon-globe"></span> <strong>云数据库</strong></a>
+                <a class="navbar-brand" href="/" style="color: orange"><span class="glyphicon glyphicon-globe"></span> <strong>云数据库</strong></a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> 用户名</a></li>
             </ul>
         </div>
     </nav>
@@ -120,8 +119,9 @@
             </div>
         </div>
     </div>
-    <!--存储空间-->
-    <div class="container config"  id="storage" style="height: 6em">
+
+    <%--存储空间--%>
+    <div class="container config"  id="storege" style="height: 6em">
         <div class="col-sm-1"style="height: 6em" >
             <p class="config-type text-center" style="writing-mode:tb-rl;height: 6em" >存储空间</p>
         </div>
@@ -131,15 +131,22 @@
                     <p>存储空间</p>
                 </div>
                 <div class="col-sm-7">
-                    <input  id="ex1" data-slider-id="ex1Slider" type="text"
-                            data-slider-min="0" data-slider-max="200" data-slider-step="1"
-                            data-slider-value="20" />
-                    <span id="ex1Slider">当前容量<span id="currnetVal">20</span>GB </span>
+                    <input  id="ex3" data-slider-id="ex3Slider" type="text"
+                            data-provide="slider"
+                            data-slider-min="50"
+                            data-slider-max="200"
+                            data-slider-ticks="[50,100,150,200]"
+                            data-slider-ticks-labels='["50GB", "100GB", "150GB", "200GB"]'
+                            data-slider-step="50"
+                            data-slider-value="50"
+                            style="width: 300px"
+                    />
                 </div>
             </div>
         </div>
     </div>
-    <!--存储空间-->
+
+    <!--购买量-->
     <div class="container config"  id="purchase-amount" style="height: 6em">
         <div class="col-sm-1"style="height: 6em" >
             <p class="config-type text-center" style="writing-mode:tb-rl;height: 6em" >购买量</p>
@@ -295,14 +302,14 @@
             //
 
             //存储空间
-            $('#ex1').slider({
-                formatter: function (value) {
-                    return '当前容量: ' + value+"G";
-                }
-            }).on('change', function (e) {
-
-                $("#currnetVal").html(e.value.newValue);
-            })
+            // $('#ex3').slider({
+            //     formatter: function (value) {
+            //         return '当前容量: ' + value+"G";
+            //     }
+            // }).on('change', function (e) {
+            //
+            //     $("#currnetVal").html(e.value.newValue);
+            // })
 
             var region;
             var type;
@@ -316,10 +323,11 @@
                 type = $("#dbType input[name='types']:checked").val();
                 version = $("#dbVersion input[name='versions']:checked").val();
                 specification =$("#specification input[name='specifications']:checked").val();
-                storage = Number($("#ex1").val());
+                storage = Number($("#ex3").val());
                 time = Number($("#ex2").val());
                 var price = 10;
-                (specification == "1核2G"){
+                (specification == "1核2G")
+                {
                      price = 15
                 }
                 totalPrice = ((price+2*storage*(1-storage/1000))*time*(1-time/100)).toFixed(2);

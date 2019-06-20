@@ -7,9 +7,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 public class IndexController {
-    @RequestMapping("/")
-    public String getIndex() {
-        return "index";
-    }
+//    @RequestMapping("/")
+//    public String getIndex() {
+//        return "index";
+//    }
+//    @RequestMapping("/login")
+//    public String getLogin(){
+//        return "login";
+//    }
 }
 
