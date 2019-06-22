@@ -6,8 +6,20 @@ import cn.wzc.cloud.domain.User;
 import java.util.List;
 
 public interface UserService {
-    boolean register(User user);
-    boolean login(User user);
+    /**
+     * 注册
+     * @param user
+     * @return 成功返回UserId，失败返回-1
+     */
+    int register(User user);
+
+    /**
+     * 登陆，
+     * @param user
+     * @return 成功返回userId，失败返回-1
+     */
+    int login(User user);
+
     List<DBInfo> getDBList(int userId);
     boolean purchaseDB(DBInfo dbInfo);
 }

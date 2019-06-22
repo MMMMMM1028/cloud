@@ -4,25 +4,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
-public class DBInfo {
+public class DBInfo implements Serializable {
 
-    @NotNull
     int dbId;
-    @NotNull
     int ram;
-    @NotNull
     int cpu;
-    @NotNull
     String version;
-    @NotNull
+    String state;
+    int storage;
     String type;
-    @NotNull
     int port;
     String IP;
-    @NotNull
     int userId;
 
 

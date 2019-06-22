@@ -1,51 +1,13 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-    <!--<meta charset="UTF-8">-->
-    <!--<title>Title</title>-->
-    <!--<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">-->
-    <!--<link href="//cdn.bootcss.com/bootstrap-slider/9.4.1/css/bootstrap-slider.css" rel="stylesheet">-->
-
-    <!--<script src="//cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>-->
-    <!--<script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-    <!--<script src="//cdn.bootcss.com/bootstrap-slider/9.4.1/bootstrap-slider.min.js"></script>-->
-
-    <!--<style>-->
-        <!--#ex1Slider .slider-selection {-->
-            <!--background: #BABABA;-->
-        <!--}-->
-    <!--</style>-->
-
-
-
-<!--</head>-->
-
-<!--<body>-->
-    <!--<input  id="ex1" data-slider-id="ex1Slider" type="text"-->
-            <!--data-slider-min="5" data-slider-max="200" data-slider-step="1"-->
-            <!--data-slider-value="15"/>-->
-    <!--<span id="ex1Slider">current vlaue <span id="currnetVal">5</span> </span>-->
-<!--<script type="text/javascript">-->
-    <!--$('#ex1').slider({-->
-        <!--formatter: function (value) {-->
-            <!--return 'Current value: ' + value;-->
-        <!--}-->
-    <!--}).on('slide', function (slideEvt) {-->
-        <!--// 当滚动时触发-->
-        <!--console.info(slideEvt);-->
-        <!--// 获取当前滚动的值，可能有重复-->
-        <!--console.info(slideEvt.value);-->
-    <!--}).on('change', function (e) {-->
-        <!--//当值发生改变的时候触发-->
-        <!--console.info(e);-->
-        <!--//获取旧值和新值-->
-        <!--console.info(e.value.oldValue + '&#45;&#45;' + e.value.newValue);-->
-        <!--// var currentval = e.value.newValue;-->
-        <!--$("#currnetVal").html(e.value.newValue);-->
-    <!--});-->
-    <!--// With JQuery 使用JQuery 方式调用-->
-
-<!--</script>-->
-
-
-<!--</body>-->
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<button id="btn" onclick=testClick("7788")>aaa</button>
+<script>
+    // $(function () {
+    //
+    //     function testClick() {
+    //         alert("aa");
+    //     }
+    // })
+    function testClick(data) {
+        alert(data);
+    }
+</script>

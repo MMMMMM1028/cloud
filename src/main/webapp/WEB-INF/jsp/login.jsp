@@ -1,4 +1,13 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" import="javax.servlet.http.Cookie" %>
+<%
+    Object userId = session.getAttribute("userId");
+    if (userId == null)
+        userId = -1;
+    Object uname = session.getAttribute("uname");
+    if (uname == null){
+        uname = "";
+    }
+%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -17,8 +26,15 @@
             <a class="navbar-brand" href="/" style="color: orange"><span class="glyphicon glyphicon-globe"></span> <strong>云数据库</strong></a>
         </div>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="./register"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-            <li><a href="./login"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+            <%
+                if (uname == "")
+                    out.print("<li><a href=\"./register\"><span class=\"glyphicon glyphicon-user\"></span> 注册</a></li>\n" +
+                            "            <li><a href=\"./login\"><span class=\"glyphicon glyphicon-log-in\"></span> 登录</a></li>");
+                else
+                    out.print("<li><a href=\"./register\"><span class=\"glyphicon glyphicon-user\"></span> "+ uname+"</a></li>");
+            %>
+            <%--<li><a href="./register"><span class="glyphicon glyphicon-user"></span> 注册</a></li>--%>
+            <%--<li><a href="./login"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>--%>
         </ul>
     </div>
 </nav>
@@ -30,13 +46,13 @@
         <div class="form-group">
             <label for="uname" class="col-sm-2 col-sm-offset-2 control-label">账号</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" id="uname" placeholder="请输入账号">
+                <input type="text" class="form-control" id="uname" value="<%=uname%>" placeholder="请输入账号">
             </div>
         </div>
         <div class="form-group">
             <label for="pwd" class="col-sm-2  col-sm-offset-2 control-label">密码</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" id="pwd" placeholder="请输入密码">
+                <input type="password" class="form-control" id="pwd" placeholder="请输入密码">
             </div>
         </div>
         <div class="form-group">
@@ -64,22 +80,25 @@
         $("#btn-login").click(function () {
             var uname = $("#uname").val()
             var pwd = $("#pwd").val()
+            var dto = {"uname":uname,"pwd":pwd};
             $.ajax({
-                type:'GET',
+                type:'POST',
+                contentType:'application/json',
                 url:'/user',
-                data:{
-                    uname:uname,
-                    pwd:pwd,
-                },
+                data:JSON.stringify(dto),
+                dataType:'json',
                 success:function (data) {
-                    if (data=null)
+                    if (data==null)
                         alert("密码或账号错误")
                     else{
                         //todo 跳转到 session
+                        // alert("success")
+                        // $(location).attr('href','/index')
+                        window.location.replace("http://localhost:8080/");
                     }
                 },
                 error:function () {
-                    alert("稍后重试")
+                    alert("error")
                 }
             })
         });

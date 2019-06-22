@@ -15,5 +15,9 @@ public class IndexController {
 //    public String getLogin(){
 //        return "login";
 //    }
+    @RequestMapping("/console")
+    public String getConsole(){
+        return "redirect:/db";
+    }
 }
 

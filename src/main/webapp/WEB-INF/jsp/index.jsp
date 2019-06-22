@@ -1,4 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    Object userId = session.getAttribute("userId");
+    if (userId == null)
+        userId = -1;
+    Object uname = session.getAttribute("uname");
+    if (uname == null){
+        uname = "";
+    }
+%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -16,8 +25,13 @@
                 <a class="navbar-brand" href="/" style="color: orange"><span class="glyphicon glyphicon-globe"></span> <strong>云数据库</strong></a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="./register"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-                <li><a href="./login"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                <%
+                    if (uname == "")
+                        out.print("<li><a href=\"./register\"><span class=\"glyphicon glyphicon-user\"></span> 注册</a></li>\n" +
+                                "            <li><a href=\"./login\"><span class=\"glyphicon glyphicon-log-in\"></span> 登录</a></li>");
+                    else
+                        out.print("<li><a href=\"./register\"><span class=\"glyphicon glyphicon-user\"></span> "+ uname+"</a></li>");
+                %>
             </ul>
         </div>
     </nav>

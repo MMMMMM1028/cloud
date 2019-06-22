@@ -27,8 +27,8 @@
 
     <select id="selectOwnDBInfoById" parameterType="int" resultType="DBInfo">
         SELECT *
-        FROM user_ LEFT JOIN dbinfo_
-        WHERE user_.userId=#{userId} AND user_.userId = dbinfo_.userId
+        FROM user_ LEFT JOIN dbinfo_ ON user_.userId = dbinfo_.userId
+        WHERE user_.userId=#{userId}
     </select>
 
 </mapper>

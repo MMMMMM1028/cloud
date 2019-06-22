@@ -3,9 +3,23 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.wzc.cloud.dao.DBInfoDao">
-    <insert id="insertDB" parameterType="DBInfo">
+    <insert id="insertDB" parameterType="DBInfo" useGeneratedKeys="true" keyColumn="dbId" keyProperty="dbId">
         INSERT
-        INTO dbinfo_(ram, cpu, version, type, port, IP, userId)
-        VALUES (#{ram}, #{cpu}, #{version}, #{type}, #{port}, #{IP}, #{userId})
+        INTO dbinfo_(ram, cpu, version, type, port,  userId, storage)
+        VALUES (#{ram}, #{cpu}, #{version}, #{type}, #{port}, #{userId}, #{storage})
+        <selectKey resultType="int" keyProperty="dbId" keyColumn="dbId" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
+
+    <update id="updateDB" parameterType="DBInfo">
+        UPDATE dbinfo_
+        SET state = #{state}
+        WHERE dbId = #{dbId}
+    </update>
+
+    <delete id="deleteDB">
+        DELETE FROM dbinfo_
+        WHERE dbId = #{dbId}
+    </delete>
 </mapper>

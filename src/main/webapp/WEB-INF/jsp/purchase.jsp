@@ -22,7 +22,7 @@
                 <a class="navbar-brand" href="/" style="color: orange"><span class="glyphicon glyphicon-globe"></span> <strong>云数据库</strong></a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> 用户名</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> <%=session.getAttribute("uname")%></a></li>
             </ul>
         </div>
     </nav>
@@ -301,16 +301,6 @@
             })
             //
 
-            //存储空间
-            // $('#ex3').slider({
-            //     formatter: function (value) {
-            //         return '当前容量: ' + value+"G";
-            //     }
-            // }).on('change', function (e) {
-            //
-            //     $("#currnetVal").html(e.value.newValue);
-            // })
-
             var region;
             var type;
             var version;
@@ -326,7 +316,7 @@
                 storage = Number($("#ex3").val());
                 time = Number($("#ex2").val());
                 var price = 10;
-                (specification == "1核2G")
+                if (specification == "1核2G")
                 {
                      price = 15
                 }
@@ -341,34 +331,36 @@
                 $("#cur-price").html("￥"+totalPrice);
                 // alert("region:  "+region+"\n"+"type:  "+type+"\n"+"version:  "+version+"\n"+"specification:  "+specification+"\n"+"storage:  "+storage +"\n"+"time:  "+time+"\n"+"price:  "+price+"\n"+"total:  "+totalPrice)
             })
+            $("#btn-confirm-purchase").click(function () {
+                //todo  session 用户信息
+                var cpu = 1;
+                var ram = 1;
+                if (specification == "1核2G"){
+                    ram = 2
+                }
+                var dto = {"version":version,"ram":ram,"cpu":cpu,"storage":storage,"type":type}
+                // alert(JSON.stringify(dto))
+                $.ajax({
+                    type:'PUT',
+                    url:'/db',
+                    contentType:'application/json',
+                    data:JSON.stringify(dto),
+                    success:function (data) {
+                        if (data==null)
+                            alert("稍后重试")
+                        else{
+                            alert("购买成功")
+                            $("#current-config").modal("hide")
+                        }
+                    },
+                    error:function () {
+                        alert("稍后重试")
+                    }
+                })
+            })
         });
 
-        $("#btn-confirm-purchase").click(function () {
-            //todo  session 用户信息
-            $.ajax({
-                type:'PUT',
-                url:'/database',
-                data:{
-                    region:region,
-                    version:version,
-                    type:type,
-                    specification:specification,
-                    time:time,
-                    price:totalPrice,
 
-                },
-                success:function (data) {
-                    if (data=null)
-                        alert("稍后重试")
-                    else{
-                        alert("购买成功")
-                    }
-                },
-                error:function () {
-                    alert("稍后重试")
-                }
-            })
-        })
     </script>
 </body>
 </html>

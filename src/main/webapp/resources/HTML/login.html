@@ -64,24 +64,25 @@
         $("#btn-login").click(function () {
             var uname = $("#uname").val()
             var pwd = $("#pwd").val()
-            $.ajax({
-                type:'GET',
-                url:'/user',
-                data:{
-                    uname:uname,
-                    pwd:pwd,
-                },
-                success:function (data) {
-                    if (data=null)
-                        alert("密码或账号错误")
-                    else{
-                        //todo 跳转到 session
-                    }
-                },
-                error:function () {
-                    alert("稍后重试")
-                }
-            })
+            alert(uname+pwd)
+            // $.ajax({
+            //     type:'GET',
+            //     url:'/user',
+            //     data:{
+            //         uname:uname,
+            //         pwd:pwd,
+            //     },
+            //     success:function (data) {
+            //         if (data=null)
+            //             alert("密码或账号错误")
+            //         else{
+            //             //todo 跳转到 session
+            //         }
+            //     },
+            //     error:function () {
+            //         alert("稍后重试")
+            //     }
+            // })
         });
     })
 </script>

@@ -48,13 +48,13 @@
         <div class="form-group">
             <label for="pwd" class="col-sm-2  col-sm-offset-2 control-label">密码</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" id="pwd" placeholder="请输入密码">
+                <input type="password" class="form-control" id="pwd" placeholder="请输入密码">
             </div>
         </div>
         <div class="form-group">
             <label for="pwd" class="col-sm-2  col-sm-offset-2 control-label">确认密码</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control"  placeholder="请再次输入密码">
+                <input type="password" class="form-control"  placeholder="请再次输入密码">
             </div>
         </div>
         <div class="form-group">
@@ -88,18 +88,17 @@
         $("#btn-register").click(function () {
             var uname = $("#uname").val()
             var pwd = $("#pwd").val()
+            var dto = {"uname":uname,"pwd":pwd};
             $.ajax({
-                type:'put',
+                type:'PUT',
+                contentType:'application/json',
                 url:'/user',
-                data:{
-                    uname: uname,
-                    pwd:pwd,
-                },
-                success:function (data) {
-                    if (data=null)
-                        alert("密码或账号错误")
+                data:JSON.stringify(dto),
+                success:function (user) {
+                    if (user == null)
+                        alert("重试")
                     else{
-                    //          todo 跳转到主页
+                        window.location.replace("http://localhost:8080/login");
                     }
                 },
                 error:function () {

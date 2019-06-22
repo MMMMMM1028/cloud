@@ -319,7 +319,8 @@
                 storage = Number($("#ex1").val());
                 time = Number($("#ex2").val());
                 var price = 10;
-                (specification == "1核2G"){
+                if (specification == "1核2G")
+                {
                      price = 15
                 }
                 totalPrice = ((price+2*storage*(1-storage/1000))*time*(1-time/100)).toFixed(2);
@@ -333,34 +334,34 @@
                 $("#cur-price").html("￥"+totalPrice);
                 // alert("region:  "+region+"\n"+"type:  "+type+"\n"+"version:  "+version+"\n"+"specification:  "+specification+"\n"+"storage:  "+storage +"\n"+"time:  "+time+"\n"+"price:  "+price+"\n"+"total:  "+totalPrice)
             })
+            $("#btn-confirm-purchase").click(function () {
+                //todo  session 用户信息
+                var cpu = 1;
+                var ram = 1;
+                if (specification == "1核2G"){
+                    ram = 2
+                }
+                var dto = {"version":version,"ram":ram,"cpu":cpu,"storage":storage,"type":type}
+                alert(JSON.stringify(dto))
+                $.ajax({
+                    type:'PUT',
+                    url:'/db',
+                    data:JSON.stringify(dto),
+                    success:function (data) {
+                        if (data==null)
+                            alert("稍后重试")
+                        else{
+                            alert("购买成功")
+                        }
+                    },
+                    error:function () {
+                        alert("稍后重试")
+                    }
+                })
+            })
         });
 
-        $("#btn-confirm-purchase").click(function () {
-            //todo  session 用户信息
-            $.ajax({
-                type:'PUT',
-                url:'/database',
-                data:{
-                    region:region,
-                    version:version,
-                    type:type,
-                    specification:specification,
-                    time:time,
-                    price:totalPrice,
 
-                },
-                success:function (data) {
-                    if (data=null)
-                        alert("稍后重试")
-                    else{
-                        alert("购买成功")
-                    }
-                },
-                error:function () {
-                    alert("稍后重试")
-                }
-            })
-        })
     </script>
 </body>
 </html>
